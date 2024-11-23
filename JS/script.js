@@ -9,7 +9,7 @@ const exchangeBtn = document.querySelector(".exchange-btn");
 const themeCheckbox = document.querySelector("#theme-checkbox");
 const check = document.querySelector(".check");
 const botn = document.querySelector(".botn");
-const msg = document.querySelector(".msg")
+const msg = document.querySelector(".msg");
 
 // Default Mode
 
@@ -50,51 +50,50 @@ const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 
 for (let select of selects) {
-    for (currCode in countryList) {
-        let newOption = document.createElement("option");
-        newOption.innerText = currCode;
-        newOption.value = currCode;
-        if (select.name === "from" && currCode === "USD") {
-            newOption.selected = "selected";
-        }
-        else if (select.name === "to" && currCode === "PKR") {
-            newOption.selected = "selected";
-        }
-        select.append(newOption);
+  for (currCode in countryList) {
+    let newOption = document.createElement("option");
+    newOption.innerText = currCode;
+    newOption.value = currCode;
+    if (select.name === "from" && currCode === "USD") {
+      newOption.selected = "selected";
+    } else if (select.name === "to" && currCode === "PKR") {
+      newOption.selected = "selected";
     }
-    select.addEventListener("change", (evt) => {
-        flagUpdate(evt.target);
-    });
+    select.append(newOption);
+  }
+  select.addEventListener("change", (evt) => {
+    flagUpdate(evt.target);
+  });
 }
 
 const updateExchangeRate = async () => {
-    let amtVal = inputAmount.value;
-    if (amtVal === "" || amtVal < 1) {
-        amtVal = 1;
-        inputAmount.value = "1";
-    }
-    const URL = `${BASE_URL}&base=${fromCurr.value}&symbols=${toCurr.value}`;
-    let response = await fetch(URL);
-    let data = await response.json();
-    let rate = data.rates[toCurr.value]
-    console.log(rate);
-    let finalAmount = amtVal * rate;
-    msg.innerText = `${amtVal}${fromCurr.value} = ${finalAmount}${toCurr.value}`;
-}
+  let amtVal = inputAmount.value;
+  if (amtVal === "" || amtVal < 1) {
+    amtVal = 1;
+    inputAmount.value = "1";
+  }
+  const URL = `${BASE_URL}&base=${fromCurr.value}&symbols=${toCurr.value}`;
+  let response = await fetch(URL);
+  let data = await response.json();
+  let rate = data.rates[toCurr.value];
+  console.log(rate);
+  let finalAmount = amtVal * rate;
+  msg.innerText = `${amtVal}${fromCurr.value} = ${finalAmount}${toCurr.value}`;
+};
 
 const flagUpdate = (element) => {
-    let currCode = element.value;
-    let countryCode = countryList[currCode];
-    let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
-    let img = element.parentElement.querySelector("img");
-    img.src = newSrc;
-}
+  let currCode = element.value;
+  let countryCode = countryList[currCode];
+  let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
+  let img = element.parentElement.querySelector("img");
+  img.src = newSrc;
+};
 
 exchangeBtn.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    updateExchangeRate();
+  evt.preventDefault();
+  updateExchangeRate();
 });
 
 window.addEventListener("load", () => {
-    updateExchangeRate();
+  updateExchangeRate();
 });
