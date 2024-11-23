@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Colors CSS -->
+    <link rel="stylesheet" href="CSS/colors.css" />
+    <!-- Icons -->
+    <link rel="stylesheet" href="fontawesome-free-6.0.0-web/css/all.css" />
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>Currency Converter</title>
+  </head>
+  <body>
+    <label for="theme-checkbox">
+        <input type="checkbox" class="styled-checkbox" id="theme-checkbox" />
+        <span class="check"></span>
+        <span class="botn"></span>
+      </label>
+    <div class="container" id="container">
+      <h1 class="main-heading">Currency Converter</h1>
+      <form action="" class="form" id="form">
+        <div class="amount">
+          <p class="amount-para">Enter Amount</p>
+          <input type="text" value="1" class="input-amount" />
+        </div>
+        <div class="dropdown">
+          <div class="from">
+            <p class="from-p">From</p>
+            <div class="select-container">
+              <img
+                src="https://flagsapi.com/US/flat/64.png"
+                alt="Country Flag"
+              />
+              <select name="from" id="">
+              </select>
+            </div>
+          </div>
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <div class="to">
+            <p class="to-p">To</p>
+            <div class="select-container">
+              <img
+                src="https://flagsapi.com/PK/flat/64.png"
+                alt="Country Flag"
+              />
+              <select name="to" id="">
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="msg">1USD = 275PKR</div>
+        <button class="exchange-btn">Get Exchange Rate</button>
+      </form>
+    </div>
+    <script src="JS/Countries.js"></script>
+    <script src="JS/script.js"></script>
+  </body>
+</html>
