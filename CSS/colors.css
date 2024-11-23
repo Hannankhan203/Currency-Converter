@@ -61,16 +61,6 @@ body.dark-mode {
   transition: 0.5s;
 }
 
-.select-container.light-mode {
-  border: 1px solid #f0a500;
-  transition: 0.5s;
-}
-
-.select-container.dark-mode {
-  border: 1px solid #0d6efd;
-  transition: 0.5s;
-}
-
 .select-container select.light-mode {
   color: #f0a500;
   transition: 0.5s;
