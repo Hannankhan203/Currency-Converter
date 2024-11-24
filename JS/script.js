@@ -1,5 +1,4 @@
 // Calling HTML Elements for Mode change
-
 const body = document.querySelector("body");
 const container = document.querySelector(".container");
 const inputAmount = document.querySelector(".input-amount");
@@ -12,7 +11,6 @@ const botn = document.querySelector(".botn");
 const msg = document.querySelector(".msg");
 
 // Default Mode
-
 body.classList.add("light-mode");
 container.classList.add("light-mode");
 inputAmount.classList.add("light-mode");
@@ -25,7 +23,6 @@ check.classList.add("light-mode");
 botn.classList.add("light-mode");
 
 // Mode Toggle
-
 function toggle() {
   body.classList.toggle("dark-mode");
   container.classList.toggle("dark-mode");
@@ -43,7 +40,6 @@ function toggle() {
 themeCheckbox.addEventListener("click", toggle);
 
 // Base URL for API
-
 const API_KEY = "2e9d21424d9144859a39647f23bc89ab";
 const BASE_URL = `https://openexchangerates.org/api/latest.json?app_id=${API_KEY}`;
 const fromCurr = document.querySelector(".from select");
@@ -68,17 +64,34 @@ for (let select of selects) {
 
 const updateExchangeRate = async () => {
   let amtVal = inputAmount.value;
+
   if (amtVal === "" || amtVal < 1) {
     amtVal = 1;
     inputAmount.value = "1";
   }
-  const URL = `${BASE_URL}&base=${fromCurr.value}&symbols=${toCurr.value}`;
-  let response = await fetch(URL);
-  let data = await response.json();
-  let rate = data.rates[toCurr.value];
-  console.log(rate);
-  let finalAmount = amtVal * rate;
-  msg.innerText = `${amtVal}${fromCurr.value} = ${finalAmount}${toCurr.value}`;
+
+  try {
+    const response = await fetch(BASE_URL);
+    if (!response.ok) throw new Error(`Error: ${response.status}`);
+    const data = await response.json();
+
+    const rates = data.rates;
+
+    const fromRate = rates[fromCurr.value];
+    const toRate = rates[toCurr.value];
+    if (!fromRate || !toRate) {
+      throw new Error("One of the selected currencies is not supported.");
+    }
+
+    const rate = toRate / fromRate;
+    const finalAmount = (amtVal * rate).toFixed(2);
+
+    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`;
+    console.log(`${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`);
+  } catch (error) {
+    console.error("Error fetching exchange rate:", error.message);
+    msg.innerText = "Error fetching exchange rate. Please try again.";
+  }
 };
 
 const flagUpdate = (element) => {
