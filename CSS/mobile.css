@@ -16,30 +16,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    padding: 30px;
   }
   
   /* Main Container */
   
   .container {
     /* border: 2px solid black; */
-    padding: 10px;
+    padding: 5px;
     border-radius: 20px;
-    height: 60vh;
+    height: 50vh;
     width: 100%;
     box-shadow: 0 0 10px #000, inset 0 0 10px #000;
   }
   
   .container .main-heading {
     text-align: center;
+    font-size: 1.2rem;
+    /* border: 2px solid black; */
+    margin-top: 1rem;
+    padding: 5px;
   }
   
   /* Form */
   
   .form {
-    margin: 2rem 0 2rem 0;
+    margin: 1rem 0 2rem 0;
     /* border: 2px solid black; */
-    padding: 10px;
+    padding: 5px;
   }
   
   .form select,
@@ -59,7 +63,7 @@
   .form .input-amount {
     padding: 5px 5px 5px 5px;
     font-size: 1rem;
-    height: 3rem;
+    height: 2rem;
     margin-top: 10px;
     background: none;
   }
@@ -67,18 +71,21 @@
   .dropdown {
     display: flex;
     /* border: 2px solid black; */
-    margin: 10px;
+    margin: 0;
+    margin-top: 15px;
     justify-content: space-between;
     align-items: center;
+    font-size: 0.8rem;
+    padding: 10px;
   }
   
   .dropdown i {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-top: 1rem;
   }
   
   .select-container img {
-    width: 2rem;
+    width: 1.2rem;
   }
   
   .select-container {
@@ -87,10 +94,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 0.5rem;
+    /* border: 2px solid black; */
   }
   
   .select-container select {
-    font-size: 1rem;
+    font-size: 0.8rem;
     background: none;
     width: auto;
   }
@@ -101,8 +109,8 @@
   }
   
   .exchange-btn {
-    height: 3rem;
-    font-size: 1rem;
+    height: 2rem;
+    font-size: 0.8rem;
     box-shadow: 0 0 10px #000, inset 0 0 10px #000;
     cursor: pointer;
     transition: 0.5s;
